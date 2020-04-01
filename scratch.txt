@@ -1,0 +1,44 @@
+ username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder" : "Username",                
+                "class": "form-control"
+            }
+        ))
+
+
+
+class customer(models.Model):
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.IntegerField()
+    firstname = models.CharField(null=True, max_length=128)
+    lastname = models.CharField(null=True, max_length=128)
+    address = models.CharField(null=True, max_length=256)
+    phonenumber = models.CharField(null=True, max_length=15)
+    country = models.CharField(null=True, max_length=64)
+    city = models.CharField(null=True, max_length=128)
+    pincode = models.CharField(null=True, max_length=15)
+    modified_date = models.DateTimeField()
+
+    def __str__(self):
+        return self.firstname
+
+
+class customer_table_configuration(models.Model):
+    customer_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    # lanip = models.IPAddressField()
+    lan_ip = models.GenericIPAddressField()
+    organisation_name = models.CharField(
+        null=True, max_length=128)
+    white_list_urls = models.URLField()
+    black_list_urls = models.URLField()
+    category_to_block = models.CharField(max_length=128)
+    countries_into_block = models.CharField(max_length=128)
+    plan_start_date = models.DateTimeField()
+    plan_end_date = models.DateTimeField()
+    current_status = models.CharField(max_length=128)
+    created_date = models.DateTimeField()
+    last_modified_date = models.DateTimeField()
+
+    # def __str__(self):
+    #     return self.
